@@ -9,6 +9,8 @@ import {
   Brain,
   Lock
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -28,41 +30,44 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, acc
 );
 
 const Features: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   const features = [
     {
       icon: <Brain className="w-6 h-6 text-white" />,
-      title: "Intelligent Analysis",
-      description: "Our AI analyzes patterns and trends in your data that would take humans days to discover, providing immediate insights.",
+      title: t.features.cards.intelligentAnalysis.title,
+      description: t.features.cards.intelligentAnalysis.description,
       accentColor: "bg-blue-600 dark:bg-blue-500"
     },
     {
       icon: <TrendingUp className="w-6 h-6 text-white" />,
-      title: "Predictive Forecasting",
-      description: "Predict future trends with remarkable accuracy using our advanced machine learning models trained on diverse datasets.",
+      title: t.features.cards.predictiveForecasting.title,
+      description: t.features.cards.predictiveForecasting.description,
       accentColor: "bg-purple-600 dark:bg-purple-500"
     },
     {
       icon: <LineChart className="w-6 h-6 text-white" />,
-      title: "Real-time Dashboard",
-      description: "Monitor your data in real-time with interactive dashboards that update automatically as new information arrives.",
+      title: t.features.cards.realTimeDashboard.title,
+      description: t.features.cards.realTimeDashboard.description,
       accentColor: "bg-indigo-600 dark:bg-indigo-500"
     },
     {
       icon: <BarChart2 className="w-6 h-6 text-white" />,
-      title: "Custom Reporting",
-      description: "Create beautiful, insightful reports tailored to your specific needs with our flexible reporting engine.",
+      title: t.features.cards.customReporting.title,
+      description: t.features.cards.customReporting.description,
       accentColor: "bg-green-600 dark:bg-green-500"
     },
     {
       icon: <AlertCircle className="w-6 h-6 text-white" />,
-      title: "Anomaly Detection",
-      description: "Automatically identify outliers and anomalies in your data to prevent issues before they become problems.",
+      title: t.features.cards.anomalyDetection.title,
+      description: t.features.cards.anomalyDetection.description,
       accentColor: "bg-amber-600 dark:bg-amber-500"
     },
     {
       icon: <Lock className="w-6 h-6 text-white" />,
-      title: "Secure Processing",
-      description: "Your data remains secure with enterprise-grade encryption and compliance with major privacy regulations.",
+      title: t.features.cards.secureProcessing.title,
+      description: t.features.cards.secureProcessing.description,
       accentColor: "bg-red-600 dark:bg-red-500"
     }
   ];
@@ -72,10 +77,10 @@ const Features: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Advanced Analytics Made Simple
+            {t.features.title}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300">
-            Xxx combines powerful AI capabilities with an intuitive interface, making sophisticated data analysis accessible to everyone.
+            {t.features.description}
           </p>
         </div>
 
@@ -96,7 +101,7 @@ const Features: React.FC = () => {
             href="#demo" 
             className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
           >
-            See Xxx in action
+            {t.features.seeInAction}
             <ArrowUpRight className="ml-2 w-4 h-4" />
           </a>
         </div>

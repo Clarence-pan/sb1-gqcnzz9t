@@ -1,7 +1,12 @@
 import React from 'react';
 import { ArrowRight, ChevronDown, BarChart2, PieChart, LineChart, TrendingUp } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const Hero: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <section className="pt-32 pb-20 overflow-hidden bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 md:px-6">
@@ -9,17 +14,18 @@ const Hero: React.FC = () => {
           <div className="w-full lg:w-1/2 mb-12 lg:mb-0">
             <div className="max-w-xl mx-auto lg:mx-0">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium mb-6">
-                <span>Introducing Xxx AI</span>
+                <span>{t.hero.subtitle}</span>
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white mb-6">
-                Transform Your Data Into 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"> Actionable Insights</span>
+                {t.hero.title}{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
+                  {t.hero.titleHighlight}
+                </span>
               </h1>
               
               <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
-                Xxx is an advanced AI agent that analyzes your data with unparalleled precision, 
-                providing insights that drive business growth and innovation.
+                {t.hero.description}
               </p>
               
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
@@ -27,14 +33,14 @@ const Hero: React.FC = () => {
                   href="#get-started" 
                   className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:translate-y-[-2px] hover:shadow-lg flex items-center justify-center"
                 >
-                  Get Started
+                  {t.hero.getStarted}
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </a>
                 <a 
                   href="#demo" 
                   className="px-6 py-3 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 border border-gray-200 dark:border-gray-700 rounded-lg font-medium transition-all duration-200 transform hover:translate-y-[-2px] hover:shadow-md flex items-center justify-center"
                 >
-                  See Demo
+                  {t.hero.seeDemo}
                 </a>
               </div>
             </div>
@@ -93,7 +99,7 @@ const Hero: React.FC = () => {
             href="#features" 
             className="flex flex-col items-center text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
-            <span className="text-sm mb-2">Discover Features</span>
+            <span className="text-sm mb-2">{t.hero.discoverFeatures}</span>
             <ChevronDown className="w-5 h-5 animate-bounce" />
           </a>
         </div>
