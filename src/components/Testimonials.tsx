@@ -1,5 +1,7 @@
 import React from 'react';
 import { Star } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 interface TestimonialProps {
   quote: string;
@@ -45,42 +47,28 @@ const Testimonial: React.FC<TestimonialProps> = ({ quote, author, role, company,
 );
 
 const Testimonials: React.FC = () => {
-  const testimonials = [
-    {
-      quote: "Xxx transformed our approach to business intelligence. We're now able to make data-driven decisions in minutes instead of days.",
-      author: "Sarah Johnson",
-      role: "Chief Data Officer",
-      company: "TechCorp Inc.",
-      rating: 5,
-      image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150"
-    },
-    {
-      quote: "The predictive analytics feature helped us anticipate market changes and stay ahead of our competition. Impressive technology!",
-      author: "Michael Chen",
-      role: "Marketing Director",
-      company: "GrowthLabs",
-      rating: 5,
-      image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150"
-    },
-    {
-      quote: "What impressed me most was how accessible Xxx made our complex data. Even team members without technical backgrounds can derive insights.",
-      author: "Emma Rodriguez",
-      role: "Operations Manager",
-      company: "Logistics Pro",
-      rating: 4,
-      image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150"
-    }
-  ];
+  const { language } = useLanguage();
+  const t = translations[language];
+
+  const testimonials = t.testimonials.items.map((item, index) => ({
+    ...item,
+    rating: 5,
+    image: [
+      "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150",
+      "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150",
+      "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=150"
+    ][index]
+  }));
 
   return (
     <section id="testimonials" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Trusted by Data-Driven Teams
+            {t.testimonials.title}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300">
-            See what our users have to say about how Xxx has transformed their approach to data analysis.
+            {t.testimonials.description}
           </p>
         </div>
 
