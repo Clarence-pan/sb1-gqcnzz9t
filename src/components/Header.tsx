@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ThemeToggle from './ThemeToggle';
+import LanguageToggle from './LanguageToggle';
 import { Menu, X, BarChart2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,31 +39,33 @@ const Header: React.FC = () => {
         <div className="hidden md:flex items-center space-x-8">
           <nav className="flex items-center space-x-6">
             <a href="#features" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              Features
+              {t.nav.features}
             </a>
             <a href="#demo" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              Demo
+              {t.nav.demo}
             </a>
             <a href="#testimonials" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              Testimonials
+              {t.nav.testimonials}
             </a>
             <a href="#faq" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-              FAQ
+              {t.nav.faq}
             </a>
           </nav>
           
           <div className="flex items-center space-x-4">
+            <LanguageToggle />
             <ThemeToggle />
             <a 
               href="#get-started" 
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
             >
-              Get Started
+              {t.nav.getStarted}
             </a>
           </div>
         </div>
 
         <div className="flex items-center md:hidden space-x-4">
+          <LanguageToggle />
           <ThemeToggle />
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -70,7 +77,6 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 py-4 px-4 shadow-lg">
           <nav className="flex flex-col space-y-4">
@@ -79,35 +85,35 @@ const Header: React.FC = () => {
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Features
+              {t.nav.features}
             </a>
             <a 
               href="#demo" 
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Demo
+              {t.nav.demo}
             </a>
             <a 
               href="#testimonials" 
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Testimonials
+              {t.nav.testimonials}
             </a>
             <a 
               href="#faq" 
               className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              FAQ
+              {t.nav.faq}
             </a>
             <a 
               href="#get-started" 
               className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 inline-block"
               onClick={() => setIsMenuOpen(false)}
             >
-              Get Started
+              {t.nav.getStarted}
             </a>
           </nav>
         </div>
